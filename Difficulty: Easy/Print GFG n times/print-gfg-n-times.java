@@ -27,7 +27,7 @@ class Solution {
         if(N==0) return;
         else {
             System.out.print("GFG ");
-            printGfg(--N);
+            printGfg(--N); //avoid using increament and decreament operators in recusion, stick to clean functions like n-1
         }
     }
 }
