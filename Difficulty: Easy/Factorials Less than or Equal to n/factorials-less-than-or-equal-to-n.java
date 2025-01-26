@@ -30,7 +30,7 @@ class Solution {
        long temp=1, counter=1;
        while(n>=temp){
            factorial.add(temp);
-           temp=((long)factorial.get((int)counter-1))*(++counter);
+           temp=factorial.get((int)counter-1)*(++counter);
        }
        return factorial;
     }
