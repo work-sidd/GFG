@@ -35,51 +35,37 @@ class Main {
 }
 
 // } Driver Code Ends
-
 class Solution {
-
-    void mergeSort(int arr[], int l, int r) {
-        if(l<r){
-            int mid = l+(r-l)/2;
-            mergeSort(arr, l, mid);
-            mergeSort(arr, mid+1, r);
-            merge(arr, l, mid, r);
+    static void merge(int arr[], int l, int mid, int h){
+        int B[]= new int [h+1];
+        int i=l,j=mid+1,k=l;
+        while(i<=mid && j<=h){
+            if(arr[i]<=arr[j])
+                B[k++]=arr[i++];
+            else B[k++]=arr[j++];
         }
-    }
- void merge(int[] arr, int left, int mid, int right) {
-        int n1 = mid - left + 1;
-        int n2 = right - mid;
-
-        int[] leftArr = new int[n1];
-        int[] rightArr = new int[n2];
-
-        System.arraycopy(arr, left, leftArr, 0, n1);
-        System.arraycopy(arr, mid + 1, rightArr, 0, n2);
-
-        int i = 0; 
-        int j = 0; 
-        int k = left; 
-        while (i < n1 && j < n2) {
-            if (leftArr[i] <= rightArr[j]) {
-                arr[k] = leftArr[i];
-                i++;
-            } else {
-                arr[k] = rightArr[j];
-                j++;
+        if(i>mid){
+            while(j<=h){
+                B[k++]=arr[j++];
             }
-            k++;
         }
-
-        while (i < n1) {
-            arr[k] = leftArr[i];
-            i++;
-            k++;
+        else{
+            while(i<=mid){
+                B[k++]=arr[i++];
+            }
         }
+        for(k=l;k<=h;k++){
+            arr[k]=B[k];
+        }
+        
+    }
 
-        while (j < n2) {
-            arr[k] = rightArr[j];
-            j++;
-            k++;
+    static void mergeSort(int arr[], int l, int r) {
+        if(l<r){
+            int mid=(l+r)/2;
+            mergeSort(arr,l, mid);
+            mergeSort(arr, mid+1,r);
+            merge(arr,l,mid,r);
         }
     }
 }
