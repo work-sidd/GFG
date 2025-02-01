@@ -25,27 +25,18 @@ public class Main {
 
 
 // User function Template for Java
-
 class Solution {
-    public int findMax(int[] arr){
-        int max=Integer.MIN_VALUE;
-        for(int i=0; i<arr.length;i++){
-            if(arr[i]>max){
-                max=arr[i];
-            }
-        }
-        return max;
-    }
     public int getSecondLargest(int[] arr) {
-        
-        int smax=Integer.MIN_VALUE;
-        int max=findMax(arr);
-        for(int i=0;i<arr.length;i++){
-            if(max>arr[i] && smax<arr[i]){
-                smax=arr[i];
+        int max = Integer.MIN_VALUE;
+        int smax = Integer.MIN_VALUE;
+        for (int i=0; i<arr.length; i++) {
+            if (arr[i]>max) {
+                smax = max; 
+                max = arr[i];   
+            } else if (arr[i]>smax && arr[i] < max) {
+                smax = arr[i]; 
             }
         }
-        if(smax==Integer.MIN_VALUE) return -1;
-        else return smax;
+        return (smax == Integer.MIN_VALUE) ? -1 : smax;
     }
 }
